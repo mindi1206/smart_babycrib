@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define GYROSCOPE_SENSITIVITY 250/32768
+//#define GYROSCOPE_SENSITIVITY 250/32768 
 
 void getRawData();
 void getAcclDegree(void);
@@ -86,7 +86,7 @@ unsigned char MPU6050_read(unsigned char addr)
     TWCR = 0x84;// ((1<<TWINT)|(1<<TWEN)) -> TWEN으로 TWI 허가 / TWINT TW인터럽트 
     while(((TWCR & 0x80) == 0x00 || ((TWSR & 0xF8) != 0x58)));// TWCR레지스터의 TWINT가 0 이거나
     dat = TWDR;
-    TWCR = 0x94;// ((1<<TWINT)|(1<<TWSTA)|(1<<TWEN)) -> TWEN으로 TWI 허가 / TWSTO는 마스터에선 TWI STOP, 슬레이브에선 SCL과 SDA 신호선을 High-Z상태로 하여 에러상태 해제 / TWINT TW인터럽트  
+    TWCR = 0x94;// ((1<<TWINT)|(1<<TWSTO)|(1<<TWEN)) -> TWEN으로 TWI 허가 / TWSTO는 마스터에선 TWI STOP, 슬레이브에선 SCL과 SDA 신호선을 High-Z상태로 하여 에러상태 해제 / TWINT TW인터럽트  
     return dat;
 }
 // 자이로 센서
