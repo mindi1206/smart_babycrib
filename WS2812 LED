@@ -1,0 +1,36 @@
+#include <mega128.h> 
+#include <delay.h> 
+//
+#define nop2 {#asm("nop"); #asm("nop");}
+#define nop8 {nop2; nop2; nop2; nop2;}
+//
+#define ws2812b PORTB.2
+
+
+void byte_out(char d){
+    char i;
+    for(i=0;i<8;i++){
+        if(d&0x80){ ws2812b=1; nop8; ws2812b=0; } 
+        else      { ws2812b=1; nop2; ws2812b=0; }
+        d<<=1; 
+    }
+}
+void main(void){
+   int x,y,z;
+   unsigned char r,g,b;
+    DDRB=4;
+    //
+    while(1){
+
+              x=0; y=0; z=0;
+              for(x=0;x<200;x++){   
+              g=(unsigned char)y; r=(unsigned char)x; b=(unsigned char)z;         
+              byte_out(g);        
+              byte_out(r);        
+              byte_out(b);
+              delay_ms(10);
+               }
+              
+         
+    }
+}
