@@ -73,10 +73,10 @@ volatile INT8 mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00,
     
 void USART0_Init( )
 {
-   UCSR0B = UCSR1B = 0x08;    //Receive(RX) 및 Transmit(TX) Enable
-   UCSR0C = UCSR1C = 0x06;    // UARTMode, 8 Bit Data, No Parity, 1 Stop Bit
-   UBRR0H = UBRR1H = 0;       //16Mhz, baud rate = 115200 (if 9600, 0)
-   UBRR0L = UBRR1L = 103;       //16Mhz, baud rate = 115200 (if 9600, 103)
+   UCSR1B = 0x18;    //Receive(RX) 및 Transmit(TX) Enable
+   UCSR1C = 0x06;    // UARTMode, 8 Bit Data, No Parity, 1 Stop Bit
+   UBRR1H = 0;       //16Mhz, baud rate = 115200 (if 9600, 0)
+   UBRR1L = 103;       //16Mhz, baud rate = 115200 (if 9600, 103)
 }
 void USART0_Transmit( char data )
 {
@@ -122,11 +122,17 @@ void main(void)
 {
     
     USART0_Init(); // 9600/8/n/1/n
-    
     dfplayer_init();
     
     while(1)
     {
         MP3_send_cmd(0x12,0,1); delay_ms(1000000); // 0001.mp3 Play
+        if(UCSR1A & 0x80) // 스마트폰에서 데이타가 오면
+        {
+            char ch;
+            ch = UDR1;
+            UDR0 = ch;
+        }
     }
 }
+
