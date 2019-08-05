@@ -73,7 +73,7 @@ volatile INT8 mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00,
     
 void USART0_Init( )
 {
-   UCSR1B = 0x08;    //Receive(RX) 및 Transmit(TX) Enable
+   UCSR1B = 0x18;    //Receive(RX) 및 Transmit(TX) Enable
    UCSR1C = 0x06;    // UARTMode, 8 Bit Data, No Parity, 1 Stop Bit
    UBRR1H = 0;       //16Mhz, baud rate = 115200 (if 9600, 0)
    UBRR1L = 103;       //16Mhz, baud rate = 115200 (if 9600, 103)
