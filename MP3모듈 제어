@@ -1,12 +1,11 @@
-/* Atmel Studio 6.2 */
-/* ATmega128 */
+
 #define F_CPU 8000000UL
 #include <mega128.h>
 #include <delay.h>
-//
+
 typedef unsigned char INT8;
 typedef unsigned int INT16;
-//
+
 #define BAUD 9600
 #define U2X_S 2     // Set of U2X --> 1 or 2
 #define MYUBRR ((F_CPU*U2X_S)/(16L*BAUD)-1)
@@ -70,14 +69,14 @@ typedef unsigned int INT16;
  
 INT8 default_buffer[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF}; // Default Buffer
 volatile INT8 mp3_cmd_buf[10] = {0x7E, 0xFF, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEF};
-volatile INT8 recv_buf[20] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-int i = 0;
-int x = 1;
+volatile INT8 recv_buf[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00;};
+int i, a = 0;
+
     
 void USART1_Init( )
 {
   UCSR1B = 0x98; // Receive interrupt
-  UCSR0B = 0x18;    //Receive(RX) 및 Transmit(TX) Enable
+  UCSR0B = 0x98;    //Receive(RX) 및 Transmit(TX) Enable
   UCSR0C = UCSR1C = 0x06;    // UARTMode, 8 Bit Data, No Parity, 1 Stop Bit
   UBRR0H = UBRR1H = 0;       //16Mhz, baud rate = 115200 (if 9600, 0)
   UBRR0L = UBRR1L = 103;       //16Mhz, baud rate = 115200 (if 9600, 103)
@@ -86,19 +85,13 @@ void USART1_Init( )
 void USART0_Transmit( char data )
 {
     // Wait for empty transmit buffer
-    while ( !( UCSR0A & 0x20 ) );   // (1<<UDRE) 
+    while ( !( UCSR0A & 0x20 ) )   // (1<<UDRE) 
+    ;
     // Put data into buffer, sends the data
     UDR0 = data;
 }
 
-void USART1_Transmit( char data )
-{
-    // Wait for empty transmit buffer
-    while ( !( UCSR1A & 0x20 ) )   // (1<<UDRE) 
-    ;
-    // Put data into buffer, sends the data
-    UDR1 = data;
-}
+
  
 INT16 MP3_checksum (void)
 {
@@ -120,7 +113,7 @@ void MP3_send_cmd (INT8 cmd, INT16 high_arg, INT16 low_arg)
     mp3_cmd_buf[7] = (INT8) ((checksum >> 8) & 0x00FF);
     mp3_cmd_buf[8] = (INT16) (checksum & 0x00FF);
     for( i=0; i< 10; i++){
-        USART1_Transmit(mp3_cmd_buf[i]);
+        USART0_Transmit(mp3_cmd_buf[i]);
         //putchar(mp3_cmd_buf[i]);
         mp3_cmd_buf[i] = default_buffer[i];
     }
@@ -128,48 +121,93 @@ void MP3_send_cmd (INT8 cmd, INT16 high_arg, INT16 low_arg)
 void dfplayer_init(void)
 {
     MP3_send_cmd(MP3_PLAYBACK_SOURCE,0,MP3_PLAYBACK_SOURCE_TF);delay_ms(10);
-    MP3_send_cmd(MP3_VOLUME, 0, 20); delay_ms(10);
+    MP3_send_cmd(MP3_VOLUME, 0,10); delay_ms(10);
 }
 
 interrupt [USART1_RXC] void usart1_rx_isr(void)
 {
-              recv_buf[i] = UDR1;
-              i++;
-              if(i == 20)
-              { 
-                  UDR0 = recv_buf[6];
-                    for( i=0; i< 20; i++){
-                        recv_buf[i] = default_buffer[i]; 
+                            
+              switch(UDR1){
+                 case '0' :            
+                    MP3_send_cmd(0x01,0,0);
+                    break;
+                 case '1' :
+                    if(a==0)
+                    {            
+                      MP3_send_cmd(0x0E,0,0);
+                      a = 1;
+                    }
+                    else
+                    {  
+                      MP3_send_cmd(0x0D,0,0);
+                      a = 0;
+                    }
+                    break;
+                 case '2' :            
+                    MP3_send_cmd(0x04,0,0);
+                    break;
+                 case '3' :            
+                    MP3_send_cmd(0x05,0,0);
+                    break;
+                 default  :
+                    break;
+              }
+     
+} 
+
+void Check(void)
+{
+              int x; 
+              if(recv_buf[6] == 0x01)
+              {
+                 UDR1 = 'a'; 
+                 MP3_send_cmd(0x12,0,2);  
+              }             
+              else if(recv_buf[6] == 0x02)
+              {
+                 UDR1 = 'b';
+                 MP3_send_cmd(0x12,0,3);
+                  
+              }
+              else if(recv_buf[6] == 0x03)
+              {
+                   UDR1 = 'c';
+                   MP3_send_cmd(0x12,0,1);   
+                  
+              }               
+              else
+              {
+                   UDR1 = 'x';      
+              }   
+              
+              for( x=0; x< 10; x++){
+              recv_buf[i] = default_buffer[i]; 
                   }
                   
-                  i = 0;
-                  if(x == 3)
-                  {
-                    x = 1;
-                    MP3_send_cmd(0x12,0,x);
-                  }
-                  else
-                  {
-                    x++;
-                    MP3_send_cmd(0x12,0,x);
-                  }
-                
-              } 
-              
-      
+}
 
-} 
+
+interrupt [USART0_RXC] void usart0_rx_isr(void)
+{          
+              recv_buf[i] = UDR0;
+              i++;     
+              
+              if(i == 20)
+              {   
+                i = 0;
+                Check();                  
+              }  
+                        
+}
+
 void main(void)
 {
     
     USART1_Init(); // 9600/8/n/1/n
     dfplayer_init();
     #asm("sei");
-    
-    
-        MP3_send_cmd(0x12,0,1);  delay_ms(1000000); // 0001.mp3 Play
-        while(1)
-        {
-        }
+    MP3_send_cmd(0x12,0,1);  delay_ms(1000000); // 0001.mp3 Play
+    while(1){ }
     
 }
+
