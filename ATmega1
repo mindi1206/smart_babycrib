@@ -1,0 +1,81 @@
+#include <mega128.h>
+#include <delay.h>
+
+void USART_Init( )
+{
+  UCSR1B = 0x98; // Receive interrupt
+  UCSR0B = 0x98;    //Receive(RX) 및 Transmit(TX) Enable
+  UCSR0C = UCSR1C = 0x06;    // UARTMode, 8 Bit Data, No Parity, 1 Stop Bit
+  UBRR0H = UBRR1H = 0;       //16Mhz, baud rate = 115200 (if 9600, 0)
+  UBRR0L = UBRR1L = 103;       //16Mhz, baud rate = 115200 (if 9600, 103)
+}
+
+void USART0_Transmit( char data )
+{
+    // Wait for empty transmit buffer
+    while ( !( UCSR0A & 0x20 ) )   // (1<<UDRE) 
+    ;
+    // Put data into buffer, sends the data
+    UDR0 = data;
+}
+
+void USART1_Transmit( char data )
+{
+    // Wait for empty transmit buffer
+    while ( !( UCSR1A & 0x20 ) )   // (1<<UDRE) 
+    ;
+    // Put data into buffer, sends the data
+    UDR1 = data;
+}
+
+interrupt [USART1_RXC] void usart1_rx_isr(void)
+{
+              unsigned char ch;
+              ch = UDR1;              
+              switch(ch){
+                 case '0' :            
+                    USART0_Transmit('a');
+                    break;
+                 case '1' :
+                    USART0_Transmit('b');
+                    break;
+                 case '2' :            
+                    USART0_Transmit('c');
+                    break;
+                 case '3' :            
+                    USART0_Transmit('d');
+                    break;
+                 case 'a' :            
+                    USART0_Transmit('0');
+                    break;
+                 case 'b' :            
+                    USART0_Transmit('1');
+                    break;
+                 case 'c' :            
+                    USART0_Transmit('2');
+                    break;
+                 case 'd' :            
+                    USART0_Transmit('3');
+                    break;   
+                 default  :
+                    break;
+              }
+     
+} 
+
+interrupt [USART0_RXC] void usart0_rx_isr(void)
+{
+      unsigned char mp;
+      mp = UDR0;
+      USART1_Transmit(mp);
+}
+
+void main(void)
+{
+    
+    USART_Init(); // 9600/8/n/1/n
+    #asm("sei");
+    while(1){ }
+    
+}
+
