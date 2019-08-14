@@ -139,7 +139,7 @@ public class BluetoothService {
                     }
 //                    else{
 //                        Message msg = new Message();
-//                        msg.obj = "온거 없다";
+//                  msg.obj = "온거 없다";
 //                        mHandler.sendMessage(msg);
 //                    }
                 } catch (Exception e) {
