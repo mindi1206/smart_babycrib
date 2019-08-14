@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".SleepDiary">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageButton
+            android:id="@+id/sleepmode"
+            android:background="@drawable/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:src="@drawable/night_blue"
+            android:textColor="#87CEEB"
+            android:text="슬립모드"/>
+
+        <ImageButton
+            android:id="@+id/wakeupmode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_click"
+            android:src="@drawable/sun_blue"
+            android:text="낮"
+            android:padding="10dp"
+
+            android:textColor="#87CEEB" />
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src ="@drawable/calendar_b"/>
+        <TextView
+
+            android:id="@+id/fragment2_setdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="7dp"
+            android:text="날짜"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="잠든시간"
+            android:id="@+id/edit_sleeptime"
+            android:textSize="15dp"
+            android:inputType="numberDecimal"/>
+        <Button
+            android:textColor="#87CEEB"
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingTop="1dp"
+            android:background="@drawable/button"
+            android:paddingBottom="1dp"
+            android:text="입력"/>
+    </LinearLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/daygraph_chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/nanumslite"
+                android:text="날짜"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/nanumslite"
+                android:text="05/27"
+                android:textColor="#ff8b94"
+                android:textSize="60sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumslite"
+                android:text="수면시간"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:id="@+id/sleeptime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumslite"
+                android:text="4.5"
+                android:textColor="#a8e6cf"
+                android:textSize="60sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/daysleep">
+
+
+    </ListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startt"
+        android:textSize="30sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/endt"
+        android:textSize="30sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sleept"
+        android:textSize="30sp"/>
+</LinearLayout>

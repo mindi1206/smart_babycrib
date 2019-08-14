@@ -1,0 +1,183 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageButton
+            android:id="@+id/sleepmode"
+            android:background="@drawable/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:src="@drawable/night_blue"
+            android:textColor="#87CEEB"
+            android:text="슬립모드"/>
+
+        <ImageButton
+            android:id="@+id/wakeupmode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_click"
+            android:src="@drawable/sun_blue"
+            android:text="낮"
+            android:padding="10dp"
+
+            android:textColor="#87CEEB" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스윙조절" />
+
+        <com.jaygoo.widget.RangeSeekBar
+            android:id="@+id/swing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rsb_gravity="bottom"
+            app:rsb_indicator_background_color="@color/colorProgress"
+            app:rsb_indicator_height="30dp"
+            app:rsb_indicator_show_mode="showWhenTouch"
+            app:rsb_indicator_width="50dp"
+            app:rsb_mode="single"
+            app:rsb_progress_color="@color/colorProgress"
+            app:rsb_step_auto_bonding="true"
+            app:rsb_step_color="@color/colorProgress"
+            app:rsb_step_height="10dp"
+            app:rsb_step_width="5dp"
+            app:rsb_steps="3"
+            app:rsb_thumb_drawable="@drawable/thumb_yellow_stroke"
+            app:rsb_tick_mark_layout_gravity="top"
+            app:rsb_tick_mark_mode="other"
+            app:rsb_tick_mark_text_array="@array/swing"
+            app:rsb_tick_mark_text_margin="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시트온도조절" />
+
+        <com.jaygoo.widget.RangeSeekBar
+            android:id="@+id/seat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rsb_gravity="bottom"
+            app:rsb_indicator_background_color="@color/colorProgress"
+            app:rsb_indicator_height="30dp"
+            app:rsb_indicator_show_mode="showWhenTouch"
+            app:rsb_indicator_width="50dp"
+            app:rsb_mode="single"
+            app:rsb_progress_color="@color/colorProgress"
+            app:rsb_step_auto_bonding="true"
+            app:rsb_step_color="@color/colorProgress"
+            app:rsb_step_height="10dp"
+            app:rsb_step_width="5dp"
+            app:rsb_steps="3"
+            app:rsb_thumb_drawable="@drawable/thumb_yellow_stroke"
+            app:rsb_tick_mark_layout_gravity="top"
+            app:rsb_tick_mark_mode="other"
+            app:rsb_tick_mark_text_array="@array/temperature"
+            app:rsb_tick_mark_text_margin="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등받이 조절" />
+
+        <com.jaygoo.widget.RangeSeekBar
+            android:id="@+id/backsupport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rsb_gravity="bottom"
+            app:rsb_indicator_background_color="@color/colorProgress"
+            app:rsb_indicator_height="30dp"
+            app:rsb_indicator_show_mode="showWhenTouch"
+            app:rsb_indicator_width="50dp"
+            app:rsb_mode="single"
+            app:rsb_progress_color="@color/colorProgress"
+            app:rsb_step_auto_bonding="true"
+            app:rsb_step_color="@color/colorProgress"
+            app:rsb_step_height="10dp"
+            app:rsb_step_width="5dp"
+            app:rsb_steps="2"
+            app:rsb_thumb_drawable="@drawable/thumb_yellow_stroke"
+            app:rsb_tick_mark_layout_gravity="top"
+            app:rsb_tick_mark_mode="other"
+            app:rsb_tick_mark_text_array="@array/backsupport"
+            app:rsb_tick_mark_text_margin="15dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="높낮이조절" />
+
+        <com.jaygoo.widget.RangeSeekBar
+            android:id="@+id/height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rsb_gravity="bottom"
+            app:rsb_indicator_background_color="@color/colorProgress"
+            app:rsb_indicator_height="30dp"
+            app:rsb_indicator_show_mode="showWhenTouch"
+            app:rsb_indicator_width="50dp"
+            app:rsb_mode="single"
+            app:rsb_progress_color="@color/colorProgress"
+            app:rsb_step_auto_bonding="true"
+            app:rsb_step_color="@color/colorProgress"
+            app:rsb_step_height="10dp"
+            app:rsb_step_width="5dp"
+            app:rsb_steps="3"
+            app:rsb_thumb_drawable="@drawable/thumb_yellow_stroke"
+            app:rsb_tick_mark_layout_gravity="top"
+            app:rsb_tick_mark_mode="other"
+            app:rsb_tick_mark_text_array="@array/height"
+            app:rsb_tick_mark_text_margin="15dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

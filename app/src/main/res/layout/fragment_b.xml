@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fffcf8"
+    android:gravity="center_horizontal"
+    tools:context=".FragmentB">
+
+    <ImageView
+        android:id="@+id/stateimage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="180dp"
+        android:src="@drawable/moon" />
+    <TextView
+        android:id="@+id/statetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="33dp"
+        android:fontFamily="@font/nanumslite"
+        android:layout_marginTop="40dp"
+        android:text="서준이가 잠들었어요!"/>
+
+    <TextView
+        android:id="@+id/sleepinfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/nanumslite"
+        android:text="최근 낮 수면시간은 30분이며"/>
+
+    <TextView
+        android:id="@+id/sleepinfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:fontFamily="@font/nanumslite"
+        android:text="밤 수면시간은 4시간 입니다"/>
+</LinearLayout>

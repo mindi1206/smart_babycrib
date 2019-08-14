@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gridview01"
+        android:layout_width="match_parent"
+        android:layout_height="601dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:orientation="vertical"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"></GridView>
+
+    <ProgressBar
+        android:id="@+id/fragment2_progressbar"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/musicplayer"
+        android:layout_alignBottom="@+id/gridview01"
+        android:layout_marginTop="-6dp"
+        android:layout_marginBottom="66dp"
+        android:progressTint="#87CEEB" />
+
+
+    <LinearLayout
+        android:id="@+id/musicplayer"
+        android:layout_alignBottom="@id/gridview01"
+        android:layout_gravity="end"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/audio_albumart"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="bottom"
+            android:src="@drawable/samplealbum" />
+
+
+        <TextView
+            android:id="@+id/audio_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/nanumslite"
+            android:text="음악을 선택해주세요" />
+
+
+        <ImageView
+            android:id="@+id/audio_play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/play"/>
+
+        <ImageView
+            android:id="@+id/audio_stop"
+            android:layout_width="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:layout_height="40dp"
+            android:src="@drawable/stop"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
