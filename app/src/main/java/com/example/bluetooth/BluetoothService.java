@@ -137,11 +137,7 @@ public class BluetoothService {
                         msg.obj = readStr;
                         mHandler.sendMessage(msg);
                     }
-//                    else{
-//                        Message msg = new Message();
-//                  msg.obj = "온거 없다";
-//                        mHandler.sendMessage(msg);
-//                    }
+
                 } catch (Exception e) {
                 }
             }
