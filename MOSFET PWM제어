@@ -1,0 +1,69 @@
+#include <mega128.h>
+
+#include <delay.h>
+
+void Pwm_Init()
+{
+ASSR = 0;
+
+TCCR2 = 0x62;
+TIMSK = 0x00;
+
+TCNT2 = 0x00;
+OCR2 = 0;
+TIFR = 0;
+}
+
+void init_uart()               // UART1 초기화 (블루투스) 
+{
+
+   UCSR0B = UCSR1B = 0x18;    //Receive(RX) 및 Transmit(TX) Enable
+   UCSR0C = UCSR1C = 0x06;    // UARTMode, 8 Bit Data, No Parity, 1 Stop Bit
+   UBRR0H = UBRR1H = 0;       //16Mhz, baud rate = 115200 (if 9600, 0)
+   UBRR0L = UBRR1L = 103;       //16Mhz, baud rate = 115200 (if 9600, 103)
+}
+
+
+void main(void)
+{
+int pwm_zerolevel = 0;
+init_uart();
+Pwm_Init();
+DDRB = 0x80;
+
+while(1){
+      OCR2 = pwm_zerolevel;
+      if(UCSR1A & 0x80) // 스마트폰에서 데이타가 오면
+      {   
+            char ch;
+            ch = UDR1;
+            switch(ch){
+            case '0' :            
+                pwm_zerolevel = 0;
+                break;
+            case '1' :            
+                pwm_zerolevel = 50;
+                break;
+            case '2' :            
+                pwm_zerolevel = 100;
+                break;
+            case '3' :            
+                pwm_zerolevel = 150;
+                break;
+            case '4' :            
+                pwm_zerolevel = 200;
+                break;                
+            case '5' :            
+                pwm_zerolevel = 255;
+                break;
+            default :
+               pwm_zerolevel = 0;
+               break; 
+           }
+        UDR1 = ch;
+    //pwm_zerolevel++;
+    //if(pwm_zerolevel>255) pwm_zerolevel = 0;
+    //delay_ms(100);
+    }
+  }
+}

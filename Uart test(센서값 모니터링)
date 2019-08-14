@@ -1,0 +1,28 @@
+#include <mega128.h>
+
+void Putch(char);
+
+void main(void)
+{
+
+char string[]= "This is USART0 control program";
+char *pStr;
+
+UCSR0A =0x00; //1배속 통신
+UCSR0B =0b00001000;  //송신 인에이블 TXEN=1;
+UCSR0C =0b00000110;  //비동기, 데이터8비트 
+
+UBRR0H = 0;   //14.7456kHz
+UBRR0L = 103; //f_osc/16*(UBRR+1) -> 9600bps가 103
+              // 115200bps는 12
+pStr = string;
+while(*pStr!=0) Putch(*pStr++);
+
+while(1);
+}
+
+void Putch(char data)
+{
+while((UCSR0A & 0x20) == 0x00);
+UDR0 = data;
+}

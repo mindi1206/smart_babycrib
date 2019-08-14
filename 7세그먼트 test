@@ -1,0 +1,67 @@
+#include <mega128.h>
+#include <delay.h>
+
+// Fnd 문자표 및 fnd포트 핀 설정
+unsigned int Port_char[] ={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90, 0x88, 0x83, 0xA7, 0xA1, 0x86, 0x8E, 0xFF};  // 0~F 의 문자표
+unsigned int Port_fnd[] ={0x1f,0x2f,0x4f,0x8f,0x0f};    // FND0 ON, FND1 ON, FND2 ON, FND3 ON, ALL FND OFF
+
+int buf_seg[4] = {0,0,0,0};     // 편의를 위한 전역 변수(버퍼) 생성 
+
+void Print_Segment(int buf_seg[])
+{
+    PORTE = Port_fnd[0]; 
+    PORTB = Port_char[buf_seg[0]]; 
+    delay_ms(5);         
+    PORTE = Port_fnd[4]; 
+    
+    PORTE = Port_fnd[1]; 
+    PORTB = Port_char[buf_seg[1]];
+    delay_ms(5);        
+    PORTE = Port_fnd[4];
+
+    PORTE = Port_fnd[2]; 
+    PORTB = Port_char[buf_seg[2]];
+    delay_ms(5);        
+    PORTE = Port_fnd[4];
+    
+    PORTE = Port_fnd[3]; 
+    PORTB = Port_char[buf_seg[3]];  
+    delay_ms(5);        
+    PORTE = Port_fnd[4];    
+}
+
+void PORT_Init(void)
+{
+    DDRE = 0xf0;    //   PORTE.4~PORTE.7 FND 출력  (PE.4 : FND0, PE.5, FND1, PE.6 : FND2, PE.7 : FND3)
+    DDRB = 0xff;    //   세그먼트의 문자포트 출력(PB.0:a, PB.1:b, PB.2:c, PB.3:d, PB.4:e, PB.5:f, PB.6:g, PB.7:dot)    
+    PORTE = 0xf0;       
+}
+
+void main (void)
+{
+    int i=3;
+    int j=1; 
+    int delay = 0;   
+    PORT_Init();
+    
+            for(j=0;j<6;j++)
+            {
+             buf_seg[3]=j;
+               if(j==5)
+               {
+             while(1)
+             {  
+             buf_seg[3]=5;
+             for(delay=0;delay<=50;delay++)
+            {
+                Print_Segment(buf_seg); 
+            } 
+            } 
+                }
+               
+            for(delay=0;delay<=50;delay++)
+            {
+                Print_Segment(buf_seg); 
+            }
+            }
+}
