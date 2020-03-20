@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:background="#fffcf8"
     tools:context=".SleepDiary">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
         <ImageButton
-            android:id="@+id/sleepmode"
+            android:id="@+id/nightbutton"
             android:background="@drawable/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,75 +24,95 @@
             android:text="슬립모드"/>
 
         <ImageButton
-            android:id="@+id/wakeupmode"
+            android:id="@+id/daybutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_click"
-            android:src="@drawable/sun_blue"
+            android:src="@drawable/sunny"
             android:text="낮"
             android:padding="10dp"
-
             android:textColor="#87CEEB" />
     </LinearLayout>
+
+    <!-- -->
     <LinearLayout
         android:gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="23dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <ImageView
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src ="@drawable/calendar_b"/>
         <TextView
-
-            android:id="@+id/fragment2_setdate"
-            android:layout_width="wrap_content"
+            android:id="@+id/start"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="7dp"
-            android:text="날짜"
+            android:layout_marginLeft="5dp"
+            android:text="시작일"
             android:textSize="15dp"/>
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src ="@drawable/calendar_b"/>
 
-        <EditText
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/end"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:hint="잠든시간"
-            android:id="@+id/edit_sleeptime"
-            android:textSize="15dp"
-            android:inputType="numberDecimal"/>
-        <Button
-            android:textColor="#87CEEB"
-            android:id="@+id/ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="종료일"
+            android:textSize="15dp" />
+
+        <ImageButton
             android:layout_gravity="end"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:paddingTop="1dp"
-            android:background="@drawable/button"
-            android:paddingBottom="1dp"
-            android:text="입력"/>
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/search"
+            android:background="@drawable/search"/>
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/preview"
+        android:layout_marginTop="22dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/largenoti" />
     <!-- TODO: Update blank fragment layout -->
     <com.github.mikephil.charting.charts.LineChart
+        android:visibility="gone"
+        android:layout_marginTop="22dp"
         android:id="@+id/daygraph_chart"
         android:layout_width="match_parent"
         android:layout_height="300dp" />
 
+    <!-- 날짜와 수면시간은 그래프 선택 전 보이지 않게!! 하기 ㅇ3ㅇ.. -->
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/discription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="기간을 설정한 다음, 날짜를 선택해주세요!"/>
+
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/date_container"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
             android:gravity="center"
@@ -101,25 +122,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="@font/nanumslite"
                 android:text="날짜"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/sleepdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/nanumslite"
                 android:text="05/27"
                 android:textColor="#ff8b94"
-                android:textSize="60sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
         <LinearLayout
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:visibility="gone"
+            android:id="@+id/time_container"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="wrap_content"
@@ -139,17 +161,24 @@
                 android:fontFamily="@font/nanumslite"
                 android:text="4.5"
                 android:textColor="#a8e6cf"
-                android:textSize="60sp" />
+                android:textSize="30sp" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sleepdiary_line"/>
+
     <ListView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/daysleep">
-
-
     </ListView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

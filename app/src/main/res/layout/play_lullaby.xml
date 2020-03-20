@@ -2,38 +2,91 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fffcf8"
     android:orientation="vertical">
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/gridview01"
-        android:layout_width="match_parent"
-        android:layout_height="601dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="3"
-        android:orientation="vertical"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp"></GridView>
-
-    <ProgressBar
-        android:id="@+id/fragment2_progressbar"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+    <LinearLayout
+        android:id="@+id/lullaby_discription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/musicplayer"
-        android:layout_alignBottom="@+id/gridview01"
-        android:layout_marginTop="-6dp"
-        android:layout_marginBottom="66dp"
-        android:progressTint="#87CEEB" />
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textStyle="bold"
+            android:text="번호" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="51dp"
+                android:textStyle="bold"
+                android:text="제목/작곡가" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"
+                android:text="재생시간" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:gravity="end"
+                android:textStyle="bold"
+                android:text="선호도" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/refresh"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/lullaby_discription"
+        android:layout_alignEnd="@+id/lullaby_discription"
+        android:background="@drawable/refresh" />
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lullaby_discription"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"></ListView>
 
 
     <LinearLayout
         android:id="@+id/musicplayer"
-        android:layout_alignBottom="@id/gridview01"
-        android:layout_gravity="end"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list"
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/audio_albumart"
@@ -49,24 +102,38 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
             android:fontFamily="@font/nanumslite"
+            android:gravity="center_vertical"
             android:text="음악을 선택해주세요" />
 
+        <ImageView
+            android:id="@+id/audio_pre"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/pre" />
 
         <ImageView
             android:id="@+id/audio_play"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackground"
-            android:src="@drawable/play"/>
+            android:src="@drawable/play" />
+
 
         <ImageView
             android:id="@+id/audio_stop"
             android:layout_width="40dp"
-            android:background="?attr/selectableItemBackground"
             android:layout_height="40dp"
-            android:src="@drawable/stop"/>
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/stop" />
+
+        <ImageView
+            android:id="@+id/audio_next"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_chevron_right_black_24dp" />
 
     </LinearLayout>
 

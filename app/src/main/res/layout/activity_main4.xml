@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
     tools:context=".MainActivity2">
 
-
-
-
     <TextView
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="블루투스 연습 2"/>
+        android:text="블루투스 연습 1"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -55,7 +51,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Hello World!"/>
+            android:text="Hello World!"/>
         <Button
             android:onClick="onClick"
             android:id="@+id/send"
@@ -70,65 +66,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="스위치 텍스트입니다"/>
-
-    <com.jaygoo.widget.RangeSeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:rsb_gravity="bottom"
-        app:rsb_indicator_background_color="@color/colorProgress"
-        app:rsb_indicator_height="30dp"
-        app:rsb_indicator_show_mode="showWhenTouch"
-        app:rsb_indicator_width="50dp"
-        app:rsb_mode="single"
-        app:rsb_progress_color="@color/colorProgress"
-        app:rsb_step_auto_bonding="true"
-        app:rsb_step_color="@color/colorProgress"
-        app:rsb_step_height="10dp"
-        app:rsb_step_width="5dp"
-        app:rsb_steps="4"
-        app:rsb_thumb_drawable="@drawable/thumb_yellow_stroke"
-        app:rsb_tick_mark_layout_gravity="top"
-        app:rsb_tick_mark_mode="other"
-        app:rsb_tick_mark_text_array="@array/wordsArray"
-        app:rsb_tick_mark_text_margin="15dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="잠든시각: "/>
-        <TextView
-            android:id="@+id/sleeptime"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="일어난 시각: "/>
-        <TextView
-            android:id="@+id/waketime"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fffcf8"
+    android:gravity="center_horizontal"
+    tools:context=".Home">
+
+    <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setbluetooth"
+            android:src="@drawable/bluetooth"
+            android:padding="9dp"
+            android:background="@drawable/setbehaivor" />
+        <ImageView
+           android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setbehaivor"
+            android:src="@drawable/behaivor"
+            android:padding="9dp"
+            android:background="@drawable/setbehaivor"/>
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/behaivor_report"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/bahavior_report"/>
+        <ImageView
+            android:id="@+id/reconnect"
+            android:layout_gravity="end"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/refresh"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/stateimage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/toy" />
+    <TextView
+        android:id="@+id/statetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="33dp"
+        android:fontFamily="@font/nanumslite"
+        android:layout_marginTop="80dp"
+        android:text="서준이가 활동중이에요!"/>
+
+    <TextView
+        android:id="@+id/sleepinfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/nanumslite"
+        android:text="최근 낮 수면시간은 30분이며"/>
+
+    <TextView
+        android:id="@+id/sleepinfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:fontFamily="@font/nanumslite"
+        android:text="밤 수면시간은 4시간 입니다"/>
+
+</LinearLayout>
