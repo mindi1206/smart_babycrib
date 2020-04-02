@@ -39,14 +39,14 @@ ListView 사용. 내부 Database 연동
 자장가는 선호도가 높은 순으로 정렬.
 자장가 자동재생(하단의 ▶ 버튼 선택) 시 선호도 순으로 재생되며,\
 음악 하나가 끝날 때마다 H/W에서 플래그를 전송해 다음 음악을 재생한다.
-<img src="https://user-images.githubusercontent.com/33975923/78016366-aab42a00-7385-11ea-8fbb-c72a0d55c4cb.gif" width=320px height=640px/>
+> > <img src="https://user-images.githubusercontent.com/33975923/78016366-aab42a00-7385-11ea-8fbb-c72a0d55c4cb.gif" width=320px height=640px/>
 
 * 선택재생\
 사용자가 직접 자장가를 선택해 재생가능.\
 사용자가 선택한 곡 재생이 끝나면 다시 선호도 순 재생.
-<img src="https://user-images.githubusercontent.com/33975923/78016582-f961c400-7385-11ea-89d7-b56fcbdb5d2a.gif" width=320 height=640px/>
+> > <img src="https://user-images.githubusercontent.com/33975923/78016582-f961c400-7385-11ea-89d7-b56fcbdb5d2a.gif" width=320 height=640px/>
 
 * 갱신\
 아기가 잠들면 아기가 잠들기 전에 들었던 자장가 세곡을 아이가 잠드는데 유의미한 자장가라고 판단,\
 아기가 잠들기전에 들었던 자장가 세곡의 선호도 값을 증가시켜 리스트를 갱신.
-<img src="https://user-images.githubusercontent.com/33975923/78016728-2ada8f80-7386-11ea-91b3-cff26f0ff3d9.gif" width=320px height=640px/>
+> > <img src="https://user-images.githubusercontent.com/33975923/78016728-2ada8f80-7386-11ea-91b3-cff26f0ff3d9.gif" width=320px height=640px/>
